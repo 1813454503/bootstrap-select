@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+</head>
+<body>
+<div class="main-body" style="border:1px solid #000; height:50px;"></div>
+<form action="http://www.baidu.com" id="testform" >
+    <select name="test" id="test" class="selectpicker show-tick" multiple >
+        <optgroup>
+        <option >aaa</option>
+        <option disabled >bbb</option>
+        <option >ccc</option>
+        <optgroup>
+        <option >ddd</option>
+        <option >eee</option>
+            <!--这里是分组-->
+        <optgroup>
+        <option >abcd</option>
+        <option >abce</option>
+    </select>
+</form>
+<script>
+    let testObj = $('.selectpicker').selectpicker({
+        actionsBox:true,    //多选，前提要有多选属性（mltiple）
+        container:'.main-body', //显示的容器
+//        countSelectedText:0,        //??
+        header:'header',      //在下拉列表的头部添加一个默认的提示标签
+        hideDisabled:true,    //删除设置了disabled属性的标签，或者设置data-hide-disabled="true"属性
+        iconBase:'glyphicon',   //设置依赖的icon文件
+        liveSearch:true,    //添加一个搜索框
+        liveSearchNormalize:true,   //区分重音搜索
+        liveSearchPlaceholder:'cc',     //设置搜索框的placeholder
+        liveSearchStyle:'contains',     //设置搜索风格：模糊查询（contains）首字母查询（startsWith）
+        maxOptions:3,    //多选时限制选择的最多的个数
+        maxOptionsText:['最多选择3个','多','选','3','个'],    //设置超过最多选择个数的提示文本(arr[0]是全部的提示)
+        mobile:false,   //容许手机端的本地菜单
+        multipleSeparator:'/',  //设置多选的分割符,默认是,
+        noneSelectedText: '没选择前的提示信息',      //没选择时显示的提示文字
+        selectedTextFormat:'count>2',    //可选项[value默认的][static][count],多选时显示框的内容
+        selectOnTab:true,   //空格,换行,tab是否搜索
+        showContent:true,   //是否显示选项的内容
+
+        width:'fit',
+        style:'btn-info',   //按钮的样式
+        size:5,     //默认显示的个数
+        droupAuto:true,     //自动判断下拉打开的方向（上或者下）
+
+    });
+
+    console.log(testObj);
+
+
+    //设置默认值1
+    $('.selectpicker').selectpicker('val','ccc');
+
+    //设置默认值2
+    $('selectpicker').val('ccc');
+
+    //下拉菜单显示前事件
+    $('.selectpicker').on('show.bs.select', function () {
+        console.log('show');
+    });
+    //下拉菜单显示后事件
+    $('.selectpicker').on('shown.bs.select', function () {
+        console.log('shown');
+    });
+    //下拉菜单初始化完成后的事件
+    $('.selectpicker').on('loaded.bs.select', function () {
+        console.log('loaded');
+    });
+    //下拉菜单被渲染后的事件
+    $('.selectpicker').on('rendered.bs.select', function () {
+        console.log('rendered');
+    });
+    //下拉菜单被刷新后的事件
+    $('.selectpicker').on('refreshed.bs.select', function () {
+        console.log('rendered');
+    });
+    //
+    $('.selectpicker').on('changed.bs.select', function () {
+        console.log('changed');
+
+
+        var data2 = $('#testform').serializeObject();
+        console.log(data2);
+
+
+        var oS=document.getElementById('test');
+        console.log(oS.value)
+
+    });
+
+</script>
+</body>
+</html>
